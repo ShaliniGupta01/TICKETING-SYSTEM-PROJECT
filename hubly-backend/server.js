@@ -22,6 +22,12 @@ app.use("/api/tickets", ticketRoutes);
 app.use("/api/users", userRoutes); // <-- Mount users
 app.use("/api/messages", messageRoutes);
 
+app.use(cors({
+  origin: "https://ticketing-system-project-frontend.vercel.app/",
+  credentials: true,
+}));
+
+
 // DB Connection
 mongoose
   .connect(process.env.MONGO_URI)
