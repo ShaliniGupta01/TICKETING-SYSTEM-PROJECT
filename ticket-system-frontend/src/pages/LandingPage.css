@@ -588,62 +588,37 @@ body {
 .footer-social a:hover {
   transform: translateY(-3px);
 }
+@media screen and (max-width: 420px) {
 
-
-
-/* Mobile View Overrides */
-@media screen and (max-width: 768px) {
-  /* Make entire page white */
-  body {
-    background: #fff !important;
-  }
-
-  /* Hide all main content */
+  /* HIDE EVERY LANDING PAGE SECTION */
+  .landing-container,
   .landing-header,
   .hero-section,
   .partners-section,
   .features-section,
   .pricing-section,
   .landing-footer,
-  .landing-container {
+  main,
+  header,
+  footer,
+  .page-content {
     display: none !important;
   }
 
-  /* Show chat elements on top */
+  /* NO SCROLL BACKGROUND SHOULD NOT SHOW */
+  html, body {
+    background: #fff !important;
+    overflow: hidden !important;
+  }
+
+  /* ONLY CHAT POPUP + ICON VISIBLE */
   .chatbot-container,
-  .chat-popup,
-  .chats-window {
-    display: block !important;
-    position: fixed !important;
-    z-index: 9999 !important;
-  }
-
-  /* Chat icon bottom-right */
-  .chatbot-container {
-    bottom: 16px !important;
-    right: 16px !important;
-  }
-
-  /* Chat popup */
   .chat-popup {
-    bottom: 90px !important;
-    right: 16px !important;
-    width: 320px !important;
-    height: auto !important;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: block !important;
   }
 
-  /* Chat window scrollable */
+  /* fullname screen wala chat window hide for now */
   .chats-window {
-    bottom: 150px !important; /* above popup */
-    right: 16px !important;
-    width: 320px !important;
-    height: 60vh !important;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    overflow-y: auto;
+    display: none !important;
   }
 }
