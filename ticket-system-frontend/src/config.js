@@ -2,7 +2,7 @@
 const config = {
   BASE_URL:
     process.env.NODE_ENV === "production"
-      ? "https://your-deployed-backend-url.com/api"
+      ? "https://backend-ticketing-system-project.onrender.com/api"
       : "http://localhost:5000/api", // local backend
 };
 

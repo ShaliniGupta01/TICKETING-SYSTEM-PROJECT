@@ -7,7 +7,7 @@ import "remixicon/fonts/remixicon.css";
 import "./DashboardPage.css";
 import API from "../api/axios";
 
-const BASE_URL = "http://localhost:5000/api";
+const BASE_URL = "https://backend-ticketing-system-project.onrender.com/api";
 
 // Load avatar cache from local storage or initialize empty object
 const avatarCache = JSON.parse(localStorage.getItem("ticketAvatars")) || {};
@@ -161,11 +161,6 @@ const DashboardPage = () => {
     </span>
   </div>
 </div>
-
-
-                 
-
-
                   {/* Latest Message Preview */}
                   <p className="ticket-message">
                     {ticket.messages?.length > 0
