@@ -42,7 +42,7 @@ const MissedChatsChart = ({ data, labels }) => {
       pointHoverRadius: 7,
     },
   ],
-};
+}
 
 const options = {
   responsive: true,

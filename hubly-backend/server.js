@@ -28,5 +28,9 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log("DB Error: ", err));
 
+ app.get('/', (req, res) => {
+  res.send("Ticketing system backend is working!");
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server Running on PORT ${PORT}`));
