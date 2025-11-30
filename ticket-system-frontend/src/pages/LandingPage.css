@@ -588,37 +588,124 @@ body {
 .footer-social a:hover {
   transform: translateY(-3px);
 }
+
+
 @media screen and (max-width: 420px) {
 
-  /* HIDE EVERY LANDING PAGE SECTION */
+  /* FULL PURE WHITE BACKGROUND */
+  html, body {
+    background: #ffffff !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+    margin: 0 auto !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Center Everything */
   .landing-container,
   .landing-header,
   .hero-section,
   .partners-section,
   .features-section,
   .pricing-section,
-  .landing-footer,
-  main,
-  header,
-  footer,
-  .page-content {
+  .landing-footer {
+    width: 100% !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+  }
+
+  /* Header */
+  .landing-header {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  /* Hero Layout */
+  .hero-section {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center !important;
+    padding: 30px 10px !important;
+    gap: 15px;
+  }
+
+  .hero-left, .hero-right {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .hero-buttons {
+    justify-content: center !important;
+  }
+
+  /* Hide overlapping decorative images */
+  .hero-overlay {
     display: none !important;
   }
 
-  /* NO SCROLL BACKGROUND SHOULD NOT SHOW */
-  html, body {
-    background: #fff !important;
-    overflow: hidden !important;
+  /* Features – stack layout */
+  .feature-wrapper {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 15px;
   }
 
-  /* ONLY CHAT POPUP + ICON VISIBLE */
+  .features-left, .features-right {
+    max-width: 100% !important;
+  }
+
+  /* Pricing cards center */
+  .pricing-cards {
+    flex-direction: column !important;
+    gap: 15px !important;
+    align-items: center !important;
+  }
+
+  /* Footer center */
+  .footer-right {
+    margin-left: 0 !important;
+    justify-content: center !important;
+  }
+
+  .footer-links {
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+    gap: 8px !important;
+  }
+
+  .footer-sub {
+    align-items: center !important;
+  }
+
+  /* CHATBOT STYLING */
   .chatbot-container,
-  .chat-popup {
-    display: block !important;
+  .chat-popup,
+  .chats-window {
+    /* background: #fff !important; */
+    backdrop-filter: none !important;
+    /* box-shadow: 0 2px 10px rgba(0,0,0,0.08); */
+    border-radius: 12px !important;
+    width: 90% !important;       /* Make chat smaller on mobile */
+    margin: 0 auto !important;
   }
 
-  /* fullname screen wala chat window hide for now */
-  .chats-window {
-    display: none !important;
+
+  .sends-btn {
+    background: #fff !important;
+    border: 1px solid #ddd !important;
+  }
+
+  .chats-input-container input {
+    color: #000 !important;
+    background: #fff !important;
+  }
+
+  /* Chat positioning */
+  .chatbot-container {
+    bottom: 15px !important;
+    right: 50% !important;
+    transform: translateX(50%) !important;
   }
 }
