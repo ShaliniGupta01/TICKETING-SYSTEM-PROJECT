@@ -1,0 +1,155 @@
+.setting-layout {
+  display: flex;
+  height: 100vh;
+  /* background: #f4f6f9; */
+}
+
+.settings-content {
+  flex: 1;
+  padding: 40px 60px;
+}
+
+.header-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: -35px;
+  color: #1e1e1e;
+}
+
+.settings-card {
+  background: #FAFBFC;
+  height: 74vh;
+  padding: 30px 45px;
+  border-radius: 10px;
+  width: 180vh;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+
+.input-group input {
+  height: 40px;
+  padding: 8px 12px;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 43%;     /* 🔥 width reduced */
+}
+
+
+.input-group input[readonly] {
+  background: #f2f2f2;
+  cursor: not-allowed;
+}
+
+.success-msg {
+  color: #27ae60;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.error-msg {
+  color: #e74c3c;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.save-btn {
+  background: #0c4675;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 180px;
+  align-self: flex-end;
+}
+
+.save-btn:hover {
+  background: #115b98;
+}
+
+/* TOP HEADING */
+.settings-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #636060;
+  margin-top: -10px;
+}
+
+.settings-line {
+  border: none;
+  height: 1px;
+  margin-bottom: 20px;
+}
+
+/* Input + Tooltip alignment */
+.input-flex {
+  display: flex;
+  align-items: center;
+  width: 45%;
+  gap: 8px;
+}
+
+.input-flex input {
+  flex: 1;
+}
+
+/* REMOVE settings underline */
+.settings-line {
+  display: none;
+}
+
+/* EDIT PROFILE TITLE INSIDE CARD */
+.edit-title-box {
+  width: 100%; /* Grey line full width */
+  margin-bottom: 25px;
+}
+
+.edit-title {
+  font-size: 18px;
+  color: #0c4f86;
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: inline-block; /* Blue line fits title width */
+  position: relative;
+}
+
+/* GREY LINE FULL WIDTH */
+.edit-title-line {
+  width: 100%;
+  height: 2px;
+  background: #b9bbbc; /* Grey line */
+  border-radius: 5px;
+  margin-top: 3px;
+  position: relative;
+  z-index: 1;
+}
+
+/* BLUE LINE ONLY UNDER TEXT */
+.edit-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px; /* Keep same distance */
+  left: 0;
+  width: 100%; /* Text width */
+  height: 2px;
+  background: #0c4675; /* Blue */
+  border-radius: 9px;
+  z-index: 2; /* 🔥 Blue line above grey line */
+}

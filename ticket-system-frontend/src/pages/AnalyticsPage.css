@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+
+.page-content h1 {
+  font-size: 18px;     
+  color: #6A6B70;
+  margin-bottom: 25px;
+   font-family: 'Inter', sans-serif;
+}
+
+.sidebar {
+  width: 100px; 
+  flex-shrink: 0;
+  border-right: 1px solid #ddd;
+}
+
+/* Corrected selector for missed-chats h2 */
+.card.missed-chats h2 {
+  font-size: 24px;
+   font-family: 'Inter', sans-serif;
+  color: #4CAF50;
+  margin-bottom: 15px; 
+}
+
+
+
+.card {
+  background: white;
+  padding: 15px 20px;
+  margin-bottom: 25px;
+  font-family: 'Inter', sans-serif;
+}
+
+.card p {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+
+.metric-value {
+  font-size: 32px;
+  font-weight: bold;
+   white-space: nowrap;
+}
+
+
+
+.green-text {
+  color: #4CAF50;
+}
+
+/* Average Reply Time & Total Chats */
+.average-reply-time p {
+   width: 647px;
+    height: 95px;
+  margin-right: 20px;
+   font-family: 'Inter', sans-serif;
+}
+
+.total-chats p {
+   width: 647px;
+    height: 71px;
+  margin-right: 20px;
+   font-family: 'Inter', sans-serif;
+}
+
+.average-reply-time h2{
+    color: #4CAF50;
+    font-size: 24px;
+    font-weight: Medium;
+    width: 647px;
+    height: 95px;
+     font-family: 'Inter', sans-serif;
+}
+
+.total-chats h2{
+    color: #000000;
+    font-size: 24px;
+     font-family: 'Inter', sans-serif;
+     font-weight: Medium;
+}
+
+
+
+.resolved-tickets h2 {
+  color: #4CAF50;
+  font-size: 22px;
+  font-weight: Medium;
+  margin: 0; /* heading ke just niche para aaye */
+  font-family: 'Inter', sans-serif;
+}
+
+.resolved-tickets p {
+  margin-top: 6px;
+  width: 80%;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #606060;
+  font-family: 'Inter', sans-serif;
+}
+
+
+/* Resolved Tickets Layout */
+.resolved-tickets  {
+  display: flex;
+  margin-right: 20px;
+  align-items: center;
+  justify-content: space-between;
+   font-family: 'Inter', sans-serif;
+}
+
+.resolved-tickets > div:first-child {
+  flex: 1;
+  max-width: 75%;
+}
+
+
+.progress-circle-container {
+  --size: 80px;
+  --border-width: 8px;
+  --track-color: #f0f0f0;
+  --progress-color: #4CAF50; 
+  --progress-value: 0; 
+
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  position: relative;
+  display: grid;
+  place-items: center;
+  margin-left: 30px;
+
+
+  background: 
+      radial-gradient(
+          closest-side, 
+          white 
+          calc(100% - var(--border-width)), 
+          transparent 
+          calc(100% - var(--border-width))
+      ),
+      conic-gradient(
+          var(--progress-color) calc(var(--progress-value) * 1%), 
+          var(--track-color) 0
+      );
+} 
+
+
+.metric-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+    gap: 14px;
+}
+
+/* TEXT ADJUSTMENTS */
+.metric-row h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+
+.metric-row p {
+  margin-top: 6px;
+  width: 80%;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #606060;
+}
+
+/* RESPONSIVE FIX */
+@media (max-width: 768px) {
+  .metric-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .metric-value,
+  .progress-circle-container {
+    margin-top: 10px;
+    align-self: flex-end;
+  }
+
+  .metric-row p {
+    width: 100%;
+  }
+}
