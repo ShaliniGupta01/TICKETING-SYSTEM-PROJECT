@@ -590,7 +590,7 @@ body {
 }
 
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 480px) {
 
   /* FULL PURE WHITE BACKGROUND */
   html, body {

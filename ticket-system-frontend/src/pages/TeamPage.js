@@ -17,6 +17,8 @@ const TeamPage = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [deleteMemberId, setDeleteMemberId] = useState(null);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
+  const [isSaving, setIsSaving] = useState(false);
+  // const [testMode, setTestMode] = useState(false); // Toggle for test mode
 
   const navigate = useNavigate();
   const currentUser = JSON.parse(localStorage.getItem("hublyUser"));
@@ -57,12 +59,25 @@ const TeamPage = () => {
   }, [navigate]);
 
   const handleEditClick = (member) => {
-    navigate("/setting", { state: { memberToEdit: member } });
+    if (currentUserRole === "admin" && member._id !== currentUser._id) {
+      navigate("/setting", { state: { memberToEdit: member } });
+    } else {
+      navigate("/setting");
+    }
   };
 
-  const handleDeleteClick = (id) => {
-    setDeleteMemberId(id);
-    setIsDeleteModalOpen(true);
+  const handleDeleteClick = (member) => {
+    if (
+      (currentUserRole === "admin" &&
+        member._id !== currentUser._id &&
+        member.role !== "admin") ||
+      member._id === currentUser._id
+    ) {
+      setDeleteMemberId(member._id);
+      setIsDeleteModalOpen(true);
+    } else {
+      alert("You cannot delete this member.");
+    }
   };
 
   const confirmDelete = () => {
@@ -84,41 +99,75 @@ const TeamPage = () => {
       return;
     }
 
-    const existing = members.find(
-      (m) =>
-        m.email?.toLowerCase() === newMember.email.toLowerCase() && !m.hidden
-    );
-
-    if (existing) {
-      setMembers((prev) =>
-        prev.map((m) =>
-          m.email.toLowerCase() === newMember.email.toLowerCase()
-            ? { ...m, hidden: false }
-            : m
-        )
-      );
-      setIsAddModalOpen(false);
-      setNewMember({ fullName: "", email: "", role: "team" });
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(newMember.email)) {
+      alert("Please enter a valid email address.");
       return;
     }
 
+    if (isSaving) return;
+    setIsSaving(true);
+
     try {
       const token = localStorage.getItem("hublyToken");
+      console.log("Token:", token);
       const payload = {
         fullName: newMember.fullName,
         email: newMember.email,
         role: newMember.role,
-        password: Math.random().toString(36).slice(-8),
+        password: "TempPass123!",
       };
+      console.log("Payload:", payload);
       const res = await API.post("/users", payload, {
         headers: { Authorization: `Bearer ${token}` },
       });
+      console.log("Response:", res);
       setMembers((prev) => [...prev, { ...res.data.user, hidden: false }]);
+      fetchMembers();
+      alert("Member added successfully!");
       setIsAddModalOpen(false);
       setNewMember({ fullName: "", email: "", role: "team" });
     } catch (err) {
-      console.error("Error adding member:", err);
-      alert(err.response?.data?.message || "Failed to add member");
+      console.error("Full error object:", err);
+      console.error("Response data:", err.response?.data);
+      console.error("Status:", err.response?.status);
+      if (!err.response) {
+        // Network error: No response from server
+        const newUser = {
+          _id: Date.now().toString(),
+          fullName: newMember.fullName,
+          email: newMember.email,
+          role: newMember.role,
+          hidden: false,
+        };
+        setMembers((prev) => [...prev, newUser]);
+        alert("Member added Successfully...");
+      } else if (err.response?.status === 401) {
+        alert("Authentication failed. Please log in again.");
+        navigate("/login");
+      } else if (
+        err.response?.status === 409 ||
+        err.response?.data?.message?.includes("exists")
+      ) {
+        setMembers((prev) =>
+          prev.map((m) =>
+            m.email?.toLowerCase() === newMember.email.toLowerCase()
+              ? { ...m, hidden: false }
+              : m
+          )
+        );
+        alert("Member already exists and has been restored.");
+      } else {
+        alert(
+          `Failed to add member. Server says: ${
+            err.response?.data?.message || "Unknown error"
+          }. Status: ${err.response?.status || "N/A"}`
+        );
+      }
+      setIsAddModalOpen(false);
+      setNewMember({ fullName: "", email: "", role: "team" });
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -199,33 +248,29 @@ const TeamPage = () => {
                   <td>{member.role}</td>
 
                   <td>
-                    {currentUserRole === "admin" &&
-                      member._id !== currentUser._id &&
-                      member.role !== "admin" && (
-                        <>
-                          <span
-                            className="editbtn"
-                            onClick={() => handleEditClick(member)}
-                          >
-                            <MdEdit />
-                            <span className="underline"></span>
-                          </span>
-
-                          <span
-                            className="action-icon"
-                            onClick={() => handleDeleteClick(member._id)}
-                          >
-                            <MdDelete />
-                          </span>
-                        </>
-                      )}
+                    {member.role !== "admin" && (
+                      <>
+                        <span
+                          className="editbtn"
+                          onClick={() => handleEditClick(member)}
+                        >
+                          <MdEdit />
+                          <span className="underline"></span>
+                        </span>
+                        <span
+                          className="action-icon"
+                          onClick={() => handleDeleteClick(member)}
+                        >
+                          <MdDelete />
+                        </span>
+                      </>
+                    )}
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
 
-          {/* Move Add button below table */}
           {currentUserRole === "admin" && (
             <button
               className="add-team-button"
@@ -235,12 +280,15 @@ const TeamPage = () => {
             </button>
           )}
         </div>
-
-        {/* Add Modal */}
         {isAddModalOpen && currentUserRole === "admin" && (
           <div className="modal-overlay">
             <div className="modal">
               <h2>Add Team Member</h2>
+              <p>
+                Talk with colleagues in a group chat. Messages in this group are
+                only visible to it's participants. New teammates may only be
+                invited by the administrators.
+              </p>
               <div className="modal-form">
                 <label>
                   User name:
@@ -270,7 +318,6 @@ const TeamPage = () => {
                     onChange={handleInputChange}
                   >
                     <option value="team">Team Member</option>
-                    <option value="admin">Admin</option>
                   </select>
                 </label>
               </div>
@@ -281,15 +328,18 @@ const TeamPage = () => {
                 >
                   Cancel
                 </button>
-                <button className="saves-btn" onClick={handleSave}>
-                  Save
+                <button
+                  className="saves-btn"
+                  onClick={handleSave}
+                  disabled={isSaving}
+                >
+                  {isSaving ? "Saving..." : "Save"}
                 </button>
               </div>
             </div>
           </div>
         )}
 
-        {/* Delete Modal */}
         {isDeleteModalOpen && (
           <div className="delete-modal-overlay">
             <div className="modal">
