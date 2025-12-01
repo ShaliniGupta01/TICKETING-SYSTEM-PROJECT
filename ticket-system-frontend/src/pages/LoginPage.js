@@ -54,21 +54,23 @@ const LoginPage = () => {
         <img src={logoImage} alt="Logo" />
         <span className="logo-text">Hubly</span>
       </div>
-
+      
       <div className="login-form">
-        <h2>Sign in to your Plexify</h2>
+        <div className="name-form">Sign in to your Plexify</div>
         <form onSubmit={handleLogin}>
+        <label className="name">Username</label>
           <input
             name="email"
-            placeholder="Email"
+            placeholder=""
             value={loginData.email}
             onChange={handleChange}
             required
           />
+          <label className="pass">Password</label>
           <input
             name="password"
             type="password"
-            placeholder="Password"
+            placeholder=""
             value={loginData.password}
             onChange={handleChange}
             required

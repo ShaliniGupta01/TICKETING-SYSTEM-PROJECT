@@ -461,15 +461,13 @@ body {
   cursor: pointer;
 }
 
-
-
 .intro-logo {
   width: 42px;
   height: 42px;
   border-radius: 50%;
   position: absolute;
-  top:80px; 
-  left: 10px; 
+  top: 80px;
+  left: 10px;
   border: 2px solid #fff;
   background-color: #fff;
 }
@@ -534,10 +532,9 @@ body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-.sends-btn{
-  background-color: #B0C1D4;
+.sends-btn {
+  background-color: #b0c1d4;
 }
-
 
 .closebtn {
   position: absolute;
@@ -589,123 +586,74 @@ body {
   transform: translateY(-3px);
 }
 
-
-@media screen and (max-width: 480px) {
-
-  /* FULL PURE WHITE BACKGROUND */
-  html, body {
-    background: #ffffff !important;
-    width: 100% !important;
-    min-height: 100vh !important;
-    margin: 0 auto !important;
-    overflow-x: hidden !important;
-  }
-
-  /* Center Everything */
-  .landing-container,
-  .landing-header,
-  .hero-section,
-  .partners-section,
-  .features-section,
-  .pricing-section,
-  .landing-footer {
-    width: 100% !important;
-    margin: 0 auto !important;
-    text-align: center !important;
-  }
-
-  /* Header */
+/* Hide header when ChatPanel is open on mobile */
+@media (max-width: 720px) {
   .landing-header {
-    flex-direction: column;
-    gap: 12px;
-    align-items: center;
+    display: none;
+  }
+  .hero-left {
+    display: none;
+  }
+  .hero-right {
+    display: none;
+  }
+  .partners-section {
+    display: none;
+  }
+  .features-section {
+    display: none;
+  }
+  .pricing-section {
+    display: none;
+  }
+  .landing-footer {
+    display: none;
+  }
+  .chatbot-container{
+    width: 376px;
+    height: 555px;
+    margin-left: 54px;
+    display: flex;
+   justify-content: center;
   }
 
-  /* Hero Layout */
-  .hero-section {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center !important;
-    padding: 30px 10px !important;
-    gap: 15px;
+  .chats-message bot form-message intro-wrapper{
+    width: 280px;
+    height: 216px;
   }
+}
 
-  .hero-left, .hero-right {
-    max-width: 100% !important;
-    width: 100% !important;
+@media (max-width: 480px) {
+  .landing-header {
+    display: none;
   }
-
-  .hero-buttons {
-    justify-content: center !important;
+  .hero-left {
+    display: none;
   }
-
-  /* Hide overlapping decorative images */
-  .hero-overlay {
-    display: none !important;
+  .hero-right {
+    display: none;
   }
-
-  /* Features – stack layout */
-  .feature-wrapper {
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 15px;
+  .partners-section {
+    display: none;
   }
-
-  .features-left, .features-right {
-    max-width: 100% !important;
+  .features-section {
+    display: none;
   }
-
-  /* Pricing cards center */
-  .pricing-cards {
-    flex-direction: column !important;
-    gap: 15px !important;
-    align-items: center !important;
+  .pricing-section {
+    display: none;
   }
-
-  /* Footer center */
-  .footer-right {
-    margin-left: 0 !important;
-    justify-content: center !important;
+  .landing-footer {
+    display: none;
   }
-
-  .footer-links {
-    grid-template-columns: 1fr !important;
-    text-align: center !important;
-    gap: 8px !important;
+  .chatbot-container{
+    width: 376px;
+    height: 555px;
+    margin-left: 54px;
+    display: flex;
+   justify-content: center;
   }
-
-  .footer-sub {
-    align-items: center !important;
-  }
-
-  /* CHATBOT STYLING */
-  .chatbot-container,
-  .chat-popup,
-  .chats-window {
-    /* background: #fff !important; */
-    backdrop-filter: none !important;
-    /* box-shadow: 0 2px 10px rgba(0,0,0,0.08); */
-    border-radius: 12px !important;
-    width: 90% !important;       /* Make chat smaller on mobile */
-    margin: 0 auto !important;
-  }
-
-
-  .sends-btn {
-    background: #fff !important;
-    border: 1px solid #ddd !important;
-  }
-
-  .chats-input-container input {
-    color: #000 !important;
-    background: #fff !important;
-  }
-
-  /* Chat positioning */
-  .chatbot-container {
-    bottom: 15px !important;
-    right: 50% !important;
-    transform: translateX(50%) !important;
+  .chats-message bot form-message intro-wrapper{
+    width: 280px;
+    height: 216px;
   }
 }

@@ -11,15 +11,17 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* vertical centering */
-  align-items: center;     /* horizontal centering */
+  justify-content: center; 
+  align-items: center;    
   padding: 50px;
   background-color: #fff;
 }
 
-.login-form h2 {
+.name-form {
   font-size: 28px;
   font-weight: 600;
+ margin-right: 55vh;
+ color: black;
   margin-bottom: 40px; /* increased gap below heading */
 }
 
@@ -28,7 +30,7 @@
   width: 100vh;
   max-width: 800px;
   padding: 12px;
-  margin: 30px auto;   /* increased gap between inputs */
+  margin: 10px auto;   /* increased gap between inputs */
   border-radius: 8px;
   border: 1px solid #d1d5db;
   outline: none;
